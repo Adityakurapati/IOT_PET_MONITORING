@@ -1,0 +1,16 @@
+// dog.pug
+
+html
+  head
+    title Dog Page
+    link(rel="stylesheet", href="/css/styles.css") // Updated path to styles.css
+  body
+    h1 Dog Page
+
+    // Use conditional logic to display the appropriate image
+    if dogType === 'smile'
+      img(src="/images/active.png", alt="Smiley Dog") // Updated path to smiley-dog.jpg
+    else if dogType === 'sleep'
+      img(src="/images/sleeping.png", alt="Sleeping Dog") // Updated path to sleeping-dog.jpg
+    else
+      p(style="color: #f00; font-weight: bold;") No dog type specified
