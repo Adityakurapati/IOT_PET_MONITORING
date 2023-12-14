@@ -17,7 +17,7 @@ app.set( 'view engine', 'pug' );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 // Define a route for the dog page
-app.get( '/mypet', async ( req, res ) =>
+app.get( '/', async ( req, res ) =>
 {
         // Extract the 'type' parameter from the query string
         // const petType = req.query.type;
