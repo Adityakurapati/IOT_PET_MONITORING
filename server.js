@@ -11,23 +11,20 @@ const app=express();
 app.set( 'view engine', 'pug' );
 
 // Set the views directory path
-app.set( 'views', path.join( __dirname, 'public/views' ) );
+// app.set( 'views', path.join( __dirname, 'public/views' ) );
 
-// Serve the 'css' folder
-app.use( '/css', express.static( path.join( __dirname, 'public/css' ) ) );
-
-// Serve the 'images' folder
-app.use( '/images', express.static( path.join( __dirname, 'public/images' ) ) );
+// Serve Static Files
+app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 // Define a route for the dog page
 app.get( '/mypet', async ( req, res ) =>
 {
         // Extract the 'type' parameter from the query string
         // const petType = req.query.type;
-        const petType='active'; // Assuming 'active' for testing purposes
+        // var petType='active'; // Assuming 'active' for testing purposes
 
         var state=await fetchDataFromThingSpeak();
-        console.log( state );
+        var petType=state==1? 'active':'sleeping';
 
         // Render the "petState.pug" template
         res.render( 'petState', { petType } );

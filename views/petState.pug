@@ -1,0 +1,21 @@
+head
+  title MyPet Monitor
+  style
+       include ../public/css/style.css
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css") 
+body
+  .levels
+    span.segment
+    span.segment
+    span.segment
+    span.segment
+  
+  .status 
+    b Your Pet Is Sleeping
+
+  if petType === 'active'
+    img(src="/images/active.jpg", alt="Smiley Dog") 
+  else if petType === 'sleeping'
+    img(src="/images/sleeping.jpg", alt="Sleeping Dog") 
+  else
+    p(style="color: #f00; font-weight: bold;") No dog type specified
