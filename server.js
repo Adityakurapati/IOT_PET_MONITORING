@@ -2,7 +2,8 @@
 const express=require( 'express' );
 const path=require( 'path' );
 
-const { fetchDataFromThingSpeak }=require( './controllers/petStateController' )
+const { fetchDataFromThingSpeak }=require( './controllers/petStateController' );
+
 // Create an Express application
 const app=express();
 
@@ -10,25 +11,26 @@ const app=express();
 app.set( 'view engine', 'pug' );
 
 // Set the views directory path
-app.set( 'views', path.join( __dirname, 'views' ) );
+app.set( 'views', path.join( __dirname, 'public/views' ) );
 
 // Serve the 'css' folder
-app.use( '/css', express.static( path.join( __dirname, 'css' ) ) );
+app.use( '/css', express.static( path.join( __dirname, 'public/css' ) ) );
 
 // Serve the 'images' folder
-app.use( '/images', express.static( path.join( __dirname, 'images' ) ) );
+app.use( '/images', express.static( path.join( __dirname, 'public/images' ) ) );
 
 // Define a route for the dog page
 app.get( '/mypet', async ( req, res ) =>
 {
         // Extract the 'type' parameter from the query string
-        const petType=req.query.type;
+        // const petType = req.query.type;
+        const petType='active'; // Assuming 'active' for testing purposes
 
         var state=await fetchDataFromThingSpeak();
         console.log( state );
 
-        // Render the dog.pug template and pass the 'dogType' parameter
-        res.render( 'state', { petType } );
+        // Render the "petState.pug" template
+        res.render( 'petState', { petType } );
 } );
 
 // Set the port for the server to listen on

@@ -1,0 +1,18 @@
+head
+  title Dog Page
+  link(rel='stylesheet', href='/css/styles.css',type='text/css')
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css") // Font Awesome CDN
+body
+  h1 Dog Page
+
+  // Water-filled icon at the top right
+  div(style="position: absolute; top: 10px; right: 10px;")
+    i.fa.fa-tint(style="font-size: 24px; color: blue;")
+
+  // Use conditional logic to display the appropriate image
+  if petType === 'active'
+    img(src="/images/active.png", alt="Smiley Dog") // Updated path to active.png
+  else if petType === 'sleeping'
+    img(src="/images/sleeping.png", alt="Sleeping Dog") // Updated path to sleeping.png
+  else
+    p(style="color: #f00; font-weight: bold;") No dog type specified
