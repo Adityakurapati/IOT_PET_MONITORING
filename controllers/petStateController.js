@@ -1,7 +1,8 @@
 const axios=require( 'axios' );
 
 const channelId='2350971'; // Replace with your ThingSpeak channel ID
-const apiKey='H88K9TSQ6U7PU6UY'; // Replace with your ThingSpeak API key
+// const apiKey='H88K9TSQ6U7PU6UY'; // Replace with your ThingSpeak API key
+const apiKey='I2X6WHC6BGJ212TG'; // Replace with your ThingSpeak API key
 const apiUrl=`https://api.thingspeak.com/channels/${ channelId }/feeds.json?api_key=${ apiKey }`;
 
 const fetchDataFromThingSpeak=async () =>
