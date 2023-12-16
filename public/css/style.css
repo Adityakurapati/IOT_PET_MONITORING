@@ -52,8 +52,8 @@ body {
 /*  Water Level Indicator  */
 /* Style the battery container */
 .levels {
-        width: 70px;
-        height: 150px;
+        width: 41px;
+        height: 80px;
         background-color: #eee;
         /* border: 2px solid #aaa; */
         display: flex;
