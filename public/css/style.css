@@ -1,106 +1,201 @@
-/* styles.css */
-
 body {
         font-family: 'Arial', sans-serif;
-        margin: 0px !important;
-        padding: 0px !important;
+        margin: 0;
+        padding: 0;
         display: flex;
-        min-width: 100vw;
-        height: 100vh;
         justify-content: center;
         align-items: center;
-        background-color: #2cf0ff;
+        min-height: 100vh;
         color: #333;
+        overflow: hidden;
+        transition: background-color 0.3s, color 0.3s;
+}
+
+#background-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
 }
 
 .container {
+        position: relative;
         width: 80%;
-        margin: 0 auto;
-}
-
-/* Styles for mobile devices */
-@media only screen and (max-width: 767px) {
-        body {
-                font-size: 14px;
-        }
-
-        .container {
-                width: 100%;
-                padding: 10px;
-        }
-}
-
-/* Styles for tablets */
-@media screen and (min-width: 500px) {
-        body {
-                font-size: 3rem;
-        }
-
-        .status b {
-                font-size: 3rem;
-        }
-
-        .status {
-                top: 28% !important;
-        }
-
-        img {
-                min-width: 115vw;
-        }
-}
-
-/*  Water Level Indicator  */
-/* Style the battery container */
-.levels {
-        width: 70px;
-        height: 150px;
-        background-color: #eee;
-        /* border: 2px solid #aaa; */
-        display: flex;
-        flex-direction: column;
-        border-radius: .7rem;
-        position: absolute;
-        top: 1.8rem;
-        right: 1.8rem;
-        box-sizing: content-box;
-        padding: 1rem;
-        padding-top: 2rem;
+        max-width: 800px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
 }
 
 .status {
-        position: absolute !important;
-        top: 16%;
-        width: 50vw;
-        text-align: center;
-        color: rgb(35, 83, 132);
-        font-family: 'Comic Sans MS';
-        font-size: 1.2rem;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #2c3e50;
 }
 
-/* Style each battery segment */
-.segment {
-        display: block;
+.model-container {
         width: 100%;
-        height: 15%;
-        background-color: #3868da;
-        border-radius: 2px;
-        transform: translateY(-50%);
-        margin: 3px auto;
+        height: auto;
 }
 
-/* Position each battery segment */
-.segment:nth-child(1) {
-        bottom: 0px;
+.pet-image {
+        max-width: 100%;
+        height: auto;
+        width: 30vw;
+        /* Base width for larger screens */
+        border-radius: 10px;
+        transition: transform 0.3s;
 }
 
-.segment:nth-child(2) {
-        bottom: 22px;
+.pet-image:hover {
+        transform: scale(1.05);
 }
 
-.segment:nth-child(3) {
-        bottom: 44px;
+/* Div showing water levels */
+.water-levels {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 80px;
+        /* Increased width for better visibility */
+        height: 200px;
+        /* Increased height for better visibility */
+        background-color: #ecf0f1;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: hidden;
+        padding: 0.5rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 10;
 }
 
-.segment:nth-child(4) {
-        bottom: 66px;
+.water-levels h2 {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 0;
+        margin-bottom: 1rem;
+        /* Increased space for better visibility */
+}
+
+.level-segment {
+        flex-grow: 1;
+        background-color: #3498db;
+        margin: 2px 0;
+        /* Increased margin for larger segments */
+        transition: all 0.3s ease;
+        cursor: pointer;
+        /* Indicates interactivity */
+}
+
+.level-segment:hover {
+        background-color: #2980b9;
+        /* Darker color on hover */
+        transform: scale(1.1);
+        /* Slightly larger on hover */
+}
+
+/* Dark Theme */
+body.dark {
+        background-color: #121212;
+        color: #e0e0e0;
+}
+
+body.dark .container {
+        background-color: rgba(18, 18, 18, 0.8);
+}
+
+body.dark .status {
+        color: #bb86fc;
+}
+
+body.dark .water-levels {
+        background-color: #333;
+}
+
+body.dark .water-levels h2 {
+        color: #e0e0e0;
+}
+
+body.dark .level-segment {
+        background-color: #bb86fc;
+}
+
+body.dark .level-segment:hover {
+        background-color: #9a66e5;
+        /* Darker shade for dark theme */
+}
+
+/* Media Queries for Responsive Adjustments */
+@media screen and (max-width: 768px) {
+        .container {
+                width: 95%;
+                padding: 1rem;
+        }
+
+        .status {
+                font-size: 1.5rem;
+        }
+
+        .model-container {
+                height: auto;
+        }
+
+        .pet-image {
+                width: 50vw;
+                /* Increased width for tablets */
+        }
+}
+
+@media screen and (max-width: 480px) {
+        .pet-image {
+                width: 70vw;
+                /* Further increased width for mobile devices */
+        }
+
+        .water-levels {
+                width: 60px;
+                /* Adjusted for smaller screens */
+                height: 150px;
+                /* Adjusted for smaller screens */
+        }
+}
+
+/* Theme Toggle Buttons */
+.theme-toggle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+}
+
+.theme-toggle button {
+        margin: 0 0.5rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+}
+
+#dark-theme {
+        background-color: #333;
+        color: #fff;
+}
+
+#light-theme {
+        background-color: #fff;
+        color: #333;
+}
+
+#dark-theme:hover {
+        background-color: #555;
+}
+
+#light-theme:hover {
+        background-color: #eee;
 }

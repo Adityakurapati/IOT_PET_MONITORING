@@ -1,21 +1,40 @@
 head
   title MyPet Monitor
   style
-       include ../public/css/style.css
-  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css") 
-body
-  .levels
-    span.segment
-    span.segment
-    span.segment
-    span.segment
-  
-  .status 
-    b Your Pet Is Sleeping
+    include ../public/css/style.css
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css")
 
-  if petType === 'active'
-    img(src="/images/active.jpg", alt="Smiley Dog") 
-  else if petType === 'sleeping'
-    img(src="/images/sleeping.jpg", alt="Sleeping Dog") 
-  else
-    p(style="color: #f00; font-weight: bold;") No dog type specified
+body
+  .water-levels
+    h2 Water Levels
+    span.level-segment
+    span.level-segment
+    span.level-segment
+    span.level-segment
+
+  .container
+    .theme-toggle
+      button#dark-theme Dark Theme
+      button#light-theme Light Theme
+
+    if petType === 'active'
+      .status
+        b Your Pet Is Active
+      img(src="/images/active.jpg", alt="Smiley Dog", class="pet-image")
+    else if petType === 'sleeping'
+      .status
+        b Your Pet Is Sleeping
+      img(src="/images/sleeping.jpg", alt="Sleeping Dog", class="pet-image")
+    else
+      p(style="color: #f00; font-weight: bold;") Unable to Fetch State
+
+  script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+  script.
+    $(document).ready(function() {
+      $('#dark-theme').click(function() {
+        $('body').addClass('dark');
+      });
+      $('#light-theme').click(function() {
+        $('body').removeClass('dark');
+      });
+    });

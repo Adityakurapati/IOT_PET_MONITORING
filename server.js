@@ -15,7 +15,6 @@ app.set( 'view engine', 'pug' );
 
 // Serve Static Files
 app.use( express.static( path.join( __dirname, 'public' ) ) );
-
 // Define a route for the dog page
 app.get( '/', async ( req, res ) =>
 {
@@ -26,7 +25,7 @@ app.get( '/', async ( req, res ) =>
         var state=await fetchDataFromThingSpeak();
         var petType=state==1? 'active':'sleeping';
 
-        // Render the "petState.pug" template
+        // Render the "petState.pug" templatesetInterval(()=>{
         res.render( 'petState', { petType } );
 } );
 
